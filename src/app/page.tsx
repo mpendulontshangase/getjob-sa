@@ -1,101 +1,138 @@
-import Image from "next/image";
+import Header from '@/components/Header';
+import Link from 'next/link';
+import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-slate-50">
+      <Header />
+      
+      {/* Hero Section */}
+      <div className="bg-gradient-to-b from-white/40 to-slate-100/40 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="text-center">
+            <h1 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl md:text-5xl">
+              <span className="block">Find Your Dream Job in</span>
+              <span className="block text-blue-600">South Africa</span>
+            </h1>
+            <p className="mt-2 max-w-md mx-auto text-base text-gray-600 sm:text-lg md:text-xl md:max-w-2xl">
+              Discover thousands of job opportunities from top companies.
+            </p>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {/* Search Section */}
+          <div className="mt-6">
+            <div className="max-w-2xl mx-auto">
+              <div className="flex gap-2 shadow-lg rounded-lg overflow-hidden bg-white/80 backdrop-blur-sm">
+                <input
+                  type="text"
+                  placeholder="Job title, keywords, or company"
+                  className="flex-1 px-4 py-2 border-0 bg-transparent focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                />
+                <input
+                  type="text"
+                  placeholder="Location"
+                  className="w-1/3 px-4 py-2 border-0 border-l border-slate-200 bg-transparent focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                />
+                <button className="bg-blue-600 text-white px-6 py-2 hover:bg-blue-700 transition-colors">
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Featured Jobs Section */}
+      <div className="bg-gradient-to-b from-slate-100/40 to-slate-50/40 backdrop-blur-sm py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">Featured Jobs</h2>
+            <p className="mt-2 text-base text-gray-600">Explore our latest job opportunities</p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {/* Job Cards */}
+            <div className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50">
+              <h3 className="text-base font-semibold text-gray-900">Software Developer</h3>
+              <p className="text-blue-600 mt-1 text-sm">TechCorp SA</p>
+              <p className="text-gray-600 mt-1 text-sm">Johannesburg, Gauteng</p>
+              <div className="mt-2">
+                <span className="inline-block bg-blue-100/80 text-blue-800 text-xs px-2 py-0.5 rounded-full">
+                  Full-time
+                </span>
+              </div>
+              <div className="mt-3 flex items-center justify-between">
+                <Link 
+                  href="/jobs/software-developer"
+                  className="text-blue-600 hover:text-blue-800 text-sm"
+                >
+                  View Details →
+                </Link>
+                <button className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors">
+                  <ChatBubbleLeftIcon className="w-4 h-4" />
+                  <span className="text-xs">12 comments</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50">
+              <h3 className="text-base font-semibold text-gray-900">Marketing Manager</h3>
+              <p className="text-blue-600 mt-1 text-sm">Brand Solutions</p>
+              <p className="text-gray-600 mt-1 text-sm">Cape Town, Western Cape</p>
+              <div className="mt-2">
+                <span className="inline-block bg-blue-100/80 text-blue-800 text-xs px-2 py-0.5 rounded-full">
+                  Full-time
+                </span>
+              </div>
+              <div className="mt-3 flex items-center justify-between">
+                <Link 
+                  href="/jobs/marketing-manager"
+                  className="text-blue-600 hover:text-blue-800 text-sm"
+                >
+                  View Details →
+                </Link>
+                <button className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors">
+                  <ChatBubbleLeftIcon className="w-4 h-4" />
+                  <span className="text-xs">8 comments</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50">
+              <h3 className="text-base font-semibold text-gray-900">Financial Analyst</h3>
+              <p className="text-blue-600 mt-1 text-sm">Investment Corp</p>
+              <p className="text-gray-600 mt-1 text-sm">Durban, KwaZulu-Natal</p>
+              <div className="mt-2">
+                <span className="inline-block bg-blue-100/80 text-blue-800 text-xs px-2 py-0.5 rounded-full">
+                  Full-time
+                </span>
+              </div>
+              <div className="mt-3 flex items-center justify-between">
+                <Link 
+                  href="/jobs/financial-analyst"
+                  className="text-blue-600 hover:text-blue-800 text-sm"
+                >
+                  View Details →
+                </Link>
+                <button className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors">
+                  <ChatBubbleLeftIcon className="w-4 h-4" />
+                  <span className="text-xs">5 comments</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/jobs"
+              className="inline-block bg-white/80 backdrop-blur-sm text-blue-600 px-6 py-2 rounded-md border border-blue-600 hover:bg-blue-50 text-sm"
+            >
+              View All Jobs
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
