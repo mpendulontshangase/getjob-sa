@@ -1,12 +1,40 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Link from 'next/link';
 import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
+import { fetchJobs } from '@/app/jobs/index'; // update the path to your fetchJobs function
+
+type Job = {
+  id: string;
+  title: string;
+  company: { display_name: string };
+  location: { display_name: string };
+  description: string;
+  redirect_url: string;
+  contract_time?: string | null;
+};
 
 export default function Home() {
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadJobs() {
+      setLoading(true);
+      const results = await fetchJobs(1);
+      setJobs(results.slice(0, 3)|| []); 
+      setLoading(false);
+    }
+
+    loadJobs();
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Header />
-      
+
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-white/40 to-slate-100/40 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -51,77 +79,45 @@ export default function Home() {
             <p className="mt-2 text-base text-gray-600">Explore our latest job opportunities</p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {/* Job Cards */}
-            <div className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50">
-              <h3 className="text-base font-semibold text-gray-900">Software Developer</h3>
-              <p className="text-blue-600 mt-1 text-sm">TechCorp SA</p>
-              <p className="text-gray-600 mt-1 text-sm">Johannesburg, Gauteng</p>
-              <div className="mt-2">
-                <span className="inline-block bg-blue-100/80 text-blue-800 text-xs px-2 py-0.5 rounded-full">
-                  Full-time
-                </span>
-              </div>
-              <div className="mt-3 flex items-center justify-between">
-                <Link 
-                  href="/jobs/software-developer"
-                  className="text-blue-600 hover:text-blue-800 text-sm"
+          {loading ? (
+            <p className="text-center text-gray-600">Loading jobs...</p>
+          ) : jobs.length === 0 ? (
+            <p className="text-center text-gray-600">No jobs found.</p>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {jobs.map((job) => (
+                <div
+                  key={job.id}
+                  className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50"
                 >
-                  View Details →
-                </Link>
-                <button className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors">
-                  <ChatBubbleLeftIcon className="w-4 h-4" />
-                  <span className="text-xs">12 comments</span>
-                </button>
-              </div>
+                  <h3 className="text-base font-semibold text-gray-900">{job.title}</h3>
+                  <p className="text-blue-600 mt-1 text-sm">{job.company?.display_name || 'Unknown Company'}</p>
+                  <p className="text-gray-600 mt-1 text-sm">{job.location?.display_name || 'Unknown Location'}</p>
+                  <div className="mt-2">
+                    {job.contract_time && (
+                      <span className="inline-block bg-blue-100/80 text-blue-800 text-xs px-2 py-0.5 rounded-full">
+                        {job.contract_time}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between">
+                    <Link
+                      href={job.redirect_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 text-sm"
+                    >
+                      View Details →
+                    </Link>
+                    <button className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors">
+                      <ChatBubbleLeftIcon className="w-4 h-4" />
+                      <span className="text-xs">0 comments</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            <div className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50">
-              <h3 className="text-base font-semibold text-gray-900">Marketing Manager</h3>
-              <p className="text-blue-600 mt-1 text-sm">Brand Solutions</p>
-              <p className="text-gray-600 mt-1 text-sm">Cape Town, Western Cape</p>
-              <div className="mt-2">
-                <span className="inline-block bg-blue-100/80 text-blue-800 text-xs px-2 py-0.5 rounded-full">
-                  Full-time
-                </span>
-              </div>
-              <div className="mt-3 flex items-center justify-between">
-                <Link 
-                  href="/jobs/marketing-manager"
-                  className="text-blue-600 hover:text-blue-800 text-sm"
-                >
-                  View Details →
-                </Link>
-                <button className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors">
-                  <ChatBubbleLeftIcon className="w-4 h-4" />
-                  <span className="text-xs">8 comments</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50">
-              <h3 className="text-base font-semibold text-gray-900">Financial Analyst</h3>
-              <p className="text-blue-600 mt-1 text-sm">Investment Corp</p>
-              <p className="text-gray-600 mt-1 text-sm">Durban, KwaZulu-Natal</p>
-              <div className="mt-2">
-                <span className="inline-block bg-blue-100/80 text-blue-800 text-xs px-2 py-0.5 rounded-full">
-                  Full-time
-                </span>
-              </div>
-              <div className="mt-3 flex items-center justify-between">
-                <Link 
-                  href="/jobs/financial-analyst"
-                  className="text-blue-600 hover:text-blue-800 text-sm"
-                >
-                  View Details →
-                </Link>
-                <button className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors">
-                  <ChatBubbleLeftIcon className="w-4 h-4" />
-                  <span className="text-xs">5 comments</span>
-                </button>
-              </div>
-            </div>
-          </div>
+          )}
 
           <div className="mt-8 text-center">
             <Link
