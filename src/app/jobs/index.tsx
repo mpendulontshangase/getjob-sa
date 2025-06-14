@@ -3,7 +3,7 @@ import axios from 'axios';
 const APP_ID = '127f1814';
 const APP_KEY = '2df22b65be554f1033cafc3eec84e6ea';
 
-export async function fetchJobs(page: number = 1) {
+export async function fetchJobs(page: number = 1, searchByKeyWord: string = '', location: string = '') {
     try {
       const response = await axios.get('https://api.adzuna.com/v1/api/jobs/za/search/' + page, {
         headers: {
@@ -13,6 +13,8 @@ export async function fetchJobs(page: number = 1) {
           app_id: APP_ID,
           app_key: APP_KEY,
           results_per_page: 10,
+          what: searchByKeyWord,
+          where: location,
         },
       });
   
