@@ -10,6 +10,7 @@ import {
   ClockIcon,
   BuildingOfficeIcon
 } from '@heroicons/react/24/outline';
+import Footer from '@/components/Footer';
 
 export default async function JobDetail({ params }: { params: { id: string } }) {
   const jobs = await fetchJobs();
@@ -122,7 +123,7 @@ export default async function JobDetail({ params }: { params: { id: string } }) 
         </div>
 
         {/* Comment Section */}
-        <div className="mt-6 bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-6 rounded-lg shadow border border-blue-100/50">
+        {/* <div className="mt-6 bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-6 rounded-lg shadow border border-blue-100/50">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-900">Comments</h2>
             <div className="flex items-center gap-2 text-gray-600">
@@ -131,7 +132,7 @@ export default async function JobDetail({ params }: { params: { id: string } }) 
             </div>
           </div>
 
-          {/* Comment Box */}
+          // Comment Box 
           <div className="mb-6">
             <textarea
               placeholder="Add a comment..."
@@ -144,7 +145,7 @@ export default async function JobDetail({ params }: { params: { id: string } }) 
             </div>
           </div>
 
-          {/* Static Comments */}
+          // Static Comments 
           <div className="space-y-4">
             <div className="bg-white/50 rounded-lg p-4">
               <div className="flex justify-between items-start">
@@ -169,8 +170,9 @@ export default async function JobDetail({ params }: { params: { id: string } }) 
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
+      <Footer/>
     </div>
   );
 }

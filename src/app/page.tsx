@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Link from 'next/link';
 import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
-import { fetchJobs } from '@/app/jobs/index'; // update the path to your fetchJobs function
+import { fetchJobs } from '@/app/jobs/index'; // Ensure this supports search params
+import Footer from '@/components/Footer';
 
 type Job = {
   id: string;
@@ -19,17 +20,23 @@ type Job = {
 export default function Home() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [title, setTitle] = useState('');
+  const [location, setLocation] = useState('');
+
+  const loadJobs = async (page = 1, titleFilter = '', locationFilter = '') => {
+    setLoading(true);
+    const results = await fetchJobs(page, titleFilter, locationFilter);
+    setJobs(results.slice(0, 3) || []);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    async function loadJobs() {
-      setLoading(true);
-      const results = await fetchJobs(1);
-      setJobs(results.slice(0, 3)|| []); 
-      setLoading(false);
-    }
-
     loadJobs();
   }, []);
+
+  const handleSearch = () => {
+    loadJobs(1, title, location);
+  };
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -55,14 +62,21 @@ export default function Home() {
                 <input
                   type="text"
                   placeholder="Job title, keywords, or company"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   className="flex-1 px-4 py-2 border-0 bg-transparent focus:ring-2 focus:ring-blue-600 focus:outline-none"
                 />
                 <input
                   type="text"
                   placeholder="Location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                   className="w-1/3 px-4 py-2 border-0 border-l border-slate-200 bg-transparent focus:ring-2 focus:ring-blue-600 focus:outline-none"
                 />
-                <button className="bg-blue-600 text-white px-6 py-2 hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={handleSearch}
+                  className="bg-blue-600 text-white px-6 py-2 hover:bg-blue-700 transition-colors"
+                >
                   Search
                 </button>
               </div>
@@ -88,7 +102,7 @@ export default function Home() {
               {jobs.map((job) => (
                 <div
                   key={job.id}
-                  className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow-[0_2px_8px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_12px_-1px_rgba(0,0,0,0.1),0_2px_6px_-2px_rgba(0,0,0,0.05)] transition-all hover:translate-y-[-2px] border border-blue-100/50"
+                  className="bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-4 rounded-lg shadow hover:shadow-md transition-all hover:translate-y-[-2px] border border-blue-100/50"
                 >
                   <h3 className="text-base font-semibold text-gray-900">{job.title}</h3>
                   <p className="text-blue-600 mt-1 text-sm">{job.company?.display_name || 'Unknown Company'}</p>
@@ -129,6 +143,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
