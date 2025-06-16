@@ -3,7 +3,6 @@ import Header from '@/components/Header';
 import Link from 'next/link';
 import { fetchJobs } from '../index'; // adjust path if needed
 import {
-  ChatBubbleLeftIcon,
   MapPinIcon,
   BriefcaseIcon,
   CurrencyDollarIcon,

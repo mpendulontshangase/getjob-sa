@@ -1,12 +1,8 @@
 "use client";
 
 import { useState } from 'react';
-import { WrenchScrewdriverIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
-import {
-  FaceSmileIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
-  UserGroupIcon
-} from '@heroicons/react/24/solid'; // used for social icons (as placeholders)
+import { WrenchScrewdriverIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+ // used for social icons (as placeholders)
 
 export default function Footer() {
   const [isDevDialogOpen, setIsDevDialogOpen] = useState(false);

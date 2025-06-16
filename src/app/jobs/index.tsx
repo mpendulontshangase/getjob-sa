@@ -24,7 +24,7 @@ export async function fetchJobs(page: number = 1, searchByKeyWord: string = '', 
     );
 
     return response.data.results;
-  } catch (error: unknown) {
+  } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log('Error fetching jobs:', error.response?.data || error.message);
     } else {

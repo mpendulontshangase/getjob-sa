@@ -1,8 +1,8 @@
 "use client";
 
 import Link from 'next/link';
-// import { useState } from 'react';
-import { SparklesIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
+ import { useState } from 'react';
+import { WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
 // import AIChat from './AIChat';
 
 export default function Header() {
@@ -52,7 +52,7 @@ export default function Header() {
         </div>
       </nav>
 
-      <AIChat isOpen={isAIDialogOpen} onClose={() => setIsAIDialogOpen(false)} />
+      {/* <AIChat isOpen={isAIDialogOpen} onClose={() => setIsAIDialogOpen(false)} /> */}
 
       {isDevDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
