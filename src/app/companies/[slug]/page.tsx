@@ -2,7 +2,14 @@ import Header from '@/components/Header';
 import Link from 'next/link';
 import { MapPinIcon, BriefcaseIcon, BuildingOfficeIcon, GlobeAltIcon, UsersIcon, ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
 
-export default function CompanyProfile({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function CompanyProfile({ params }: PageProps) {
+  const {} = params;
   return (
     <div className="min-h-screen bg-slate-50">
       <Header />

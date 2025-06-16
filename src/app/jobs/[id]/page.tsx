@@ -12,9 +12,11 @@ import {
 } from '@heroicons/react/24/outline';
 import Footer from '@/components/Footer';
 
+import type { Job } from '@/types';
+
 export default async function JobDetail({ params }: { params: { id: string } }) {
-  const jobs = await fetchJobs();
-  const job = jobs.find((j: any) => j.id === params.id);
+  const jobs :Job[]= await fetchJobs();
+  const job  = jobs.find((j) => j.id === params.id);
 
   if (!job) {
     return (
@@ -27,11 +29,11 @@ export default async function JobDetail({ params }: { params: { id: string } }) 
     );
   }
 
-  function formatJobDescription(description: string) {
+  function formatJobDescription(description: string): string {
     if (!description) return '';
   
     // Replace section titles with HTML strong + breaks
-    const formatted = description
+    const formatted : string = description
       .replace(/Requirements:/g, '<br/><br/><strong>Requirements:</strong>')
       .replace(/Benefits:/g, '<br/><br/><strong>Benefits:</strong>')
       .replace(/Responsibilities:/g, '<br/><br/><strong>Responsibilities:</strong>')

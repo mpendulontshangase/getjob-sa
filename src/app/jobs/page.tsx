@@ -1,7 +1,8 @@
 'use client';
 
 import Header from '@/components/Header';
-import { ChatBubbleLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+// import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
+import type { Job } from '@/types';
 import Link from 'next/link';
 import { fetchJobs } from './index';
 import { useRouter, useSearchParams } from 'next/navigation';
