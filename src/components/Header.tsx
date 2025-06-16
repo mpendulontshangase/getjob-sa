@@ -1,12 +1,12 @@
 "use client";
 
 import Link from 'next/link';
-import { useState } from 'react';
-import { SparklesIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
-import AIChat from './AIChat';
+ import { useState } from 'react';
+import { WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
+// import AIChat from './AIChat';
 
 export default function Header() {
-  const [isAIDialogOpen, setIsAIDialogOpen] = useState(false);
+  //const [isAIDialogOpen, setIsAIDialogOpen] = useState(false);
   const [isDevDialogOpen, setIsDevDialogOpen] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export default function Header() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-blue-600">GetJobSA</span>
+              <span className="text-2xl font-bold text-blue-600">GetJobsSA</span>
             </Link>
           </div>
 
@@ -52,7 +52,7 @@ export default function Header() {
         </div>
       </nav>
 
-      <AIChat isOpen={isAIDialogOpen} onClose={() => setIsAIDialogOpen(false)} />
+      {/* <AIChat isOpen={isAIDialogOpen} onClose={() => setIsAIDialogOpen(false)} /> */}
 
       {isDevDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">

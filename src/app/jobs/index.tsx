@@ -1,11 +1,15 @@
 import axios from 'axios';
+import type { Job, JobsResponse } from '@/types';
+
 
 const APP_ID = '127f1814';
 const APP_KEY = '2df22b65be554f1033cafc3eec84e6ea';
 
-export async function fetchJobs(page: number = 1, searchByKeyWord: string = '', location: string = '') {
-    try {
-      const response = await axios.get('https://api.adzuna.com/v1/api/jobs/za/search/' + page, {
+export async function fetchJobs(page: number = 1, searchByKeyWord: string = '', location: string = ''): Promise<Job[]> {
+  try {
+    const response = await axios.get<JobsResponse>(
+      'https://api.adzuna.com/v1/api/jobs/za/search/' + page,
+      {
         headers: {
           Accept: 'application/json',
         },
@@ -16,13 +20,16 @@ export async function fetchJobs(page: number = 1, searchByKeyWord: string = '', 
           what: searchByKeyWord,
           where: location,
         },
-      });
-  
-      return response.data.results;
-    } catch (error: any) {
-      console.error('Error fetching jobs:', error.response?.data || error.message);
-      return [];
-    }
-  }
-  
+      }
+    );
 
+    return response.data.results;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log('Error fetching jobs:', error.response?.data || error.message);
+    } else {
+      console.log('Unexpected error:', error);
+    }
+    return [];
+  }
+}
