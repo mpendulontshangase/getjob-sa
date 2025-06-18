@@ -10,8 +10,15 @@ import {
   BuildingOfficeIcon
 } from '@heroicons/react/24/outline';
 import Footer from '@/components/Footer';
-
 import type { Job } from '@/types';
+
+export async function generateStaticParams() {
+  const jobs: Job[] = await fetchJobs();
+
+  return jobs.map((job) => ({
+    id: job.id,
+  }));
+}
 
 export default async function JobDetail({ params }: { params: { id: string } }) {
   const jobs :Job[]= await fetchJobs();
@@ -70,14 +77,16 @@ export default async function JobDetail({ params }: { params: { id: string } }) 
               </div>
             </div>
             <div className="text-right">
-              {job.salary_min && job.salary_max ? (
+              {job.salary_max && job.salary_max ? (
                 <div className="flex items-center gap-2 text-gray-600 mb-2">
                   <CurrencyDollarIcon className="w-5 h-5" />
                   <span className="font-medium">
-                    R{job.salary_min.toLocaleString()} - R{job.salary_max.toLocaleString()}
+                    +R
+                    {(job.salary_max/12).toLocaleString()}
                   </span>
-                  <span className="text-sm text-gray-500">per year</span>
+                  <span className="text-sm text-gray-500">per month</span>
                 </div>
+                
               ) : (
                 <p className="text-sm text-gray-500">Salary not disclosed</p>
               )}
