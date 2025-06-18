@@ -15,13 +15,16 @@ export default function Header() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-blue-600">GetJobsSA</span>
+              <span className="text-2xl font-bold text-blue-600">GetEmployedSA</span>
             </Link>
           </div>
 
           <div className="hidden sm:flex sm:items-center sm:space-x-8">
             <Link href="/jobs" className="text-gray-700 hover:text-blue-600">
               Find Jobs
+            </Link>
+            <Link href="/about" className="text-gray-700 hover:text-blue-600">
+              About
             </Link>
             <button
               onClick={() => setIsDevDialogOpen(true)}

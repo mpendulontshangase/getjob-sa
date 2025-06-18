@@ -1,7 +1,7 @@
 // import Header from '@/components/Header';
 // import Link from 'next/link';
 // import { EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline';
-
+export const dynamic = 'force-dynamic';
 // export default function LoginPage() {
 //   return (
 //     <div className="min-h-screen bg-slate-50">

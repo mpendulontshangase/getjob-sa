@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
 import { fetchJobs } from '@/app/jobs/index'; // Ensure this supports search params
 import Footer from '@/components/Footer';
+import OurOffer from '@/components/OurOffers';
 
 type Job = {
   id: string;
@@ -116,7 +117,7 @@ export default function Home() {
                   </div>
                   <div className="mt-3 flex items-center justify-between">
                     <Link
-                      href={job.redirect_url}
+                       href={`/jobs/${job.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800 text-sm"
@@ -141,7 +142,9 @@ export default function Home() {
               View All Jobs
             </Link>
           </div>
+          <OurOffer/>
         </div>
+        
       </div>
       <Footer/>
     </div>
