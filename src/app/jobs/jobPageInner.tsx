@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import {
   MagnifyingGlassIcon,
-  ArrowPathRoundedSquareIcon,
-  ArrowPathIcon,
+
   FaceFrownIcon,
 } from "@heroicons/react/16/solid";
 import type { Job } from "@/types";
