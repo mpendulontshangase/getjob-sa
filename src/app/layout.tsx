@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "GetJobSA - Find Your Dream Job",
+  title: "Drimmaz - Find Your Dream Job",
   description: "Find the best job opportunities in South Africa",
 };
 

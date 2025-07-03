@@ -20,7 +20,7 @@ export default function Footer() {
               <PhoneIcon className="h-5 w-5 text-blue-600" /> +27 123 456 789
             </p> */}
             <p className="flex items-center gap-2 mt-1">
-              <EnvelopeIcon className="h-5 w-5 text-blue-600" /> support@getjobsa.com
+              <EnvelopeIcon className="h-5 w-5 text-blue-600" /> support@drimmaz.com
             </p>
           </div>
 
