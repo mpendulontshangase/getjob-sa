@@ -9,7 +9,7 @@ export default function OurOffer() {
         <div className="text-center mb-10">
           <h2 className="text-2xl font-bold text-gray-900">What We Offer</h2>
           <p className="mt-2 text-gray-600 text-base">
-            GetEmployedSA is more than just a job portal. Here is how we support
+            Drimmaz is more than just a job portal. Here is how we support
             your career journey.
           </p>
         </div>
