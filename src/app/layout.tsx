@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Drimmaz - Find Your Dream Job",
   description: "Find the best job opportunities in South Africa",
+  other: {
+    "google-adsense-account": "ca-pub-8252140217295714",
+  },
 };
 
 export default function RootLayout({
