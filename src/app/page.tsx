@@ -39,6 +39,23 @@ export default function Home() {
     loadJobs(1, title, location);
   };
 
+  // Show full-page loader while loading
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-lg text-gray-600">Loading featured jobs...</p>
+            <p className="text-sm text-gray-500 mt-2">Please wait while we fetch the latest opportunities</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Header />
@@ -94,9 +111,7 @@ export default function Home() {
             <p className="mt-2 text-base text-gray-600">Explore our latest job opportunities</p>
           </div>
 
-          {loading ? (
-            <p className="text-center text-gray-600">Loading jobs...</p>
-          ) : jobs.length === 0 ? (
+          {jobs.length === 0 ? (
             <p className="text-center text-gray-600">No jobs found.</p>
           ) : (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

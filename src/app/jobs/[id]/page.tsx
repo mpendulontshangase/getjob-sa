@@ -1,4 +1,3 @@
-// app/jobs/[id]/page.tsx
 import Header from '@/components/Header';
 import Link from 'next/link';
 import { fetchJobs } from '../index'; // adjust path if needed
@@ -12,17 +11,10 @@ import {
 import Footer from '@/components/Footer';
 import type { Job } from '@/types';
 
-export async function generateStaticParams() {
+export default async function JobDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const jobs: Job[] = await fetchJobs();
-
-  return jobs.map((job) => ({
-    id: job.id,
-  }));
-}
-
-export default async function JobDetail({ params }: { params: { id: string } }) {
-  const jobs :Job[]= await fetchJobs();
-  const job  = jobs.find((j) => j.id === params.id);
+  const job = jobs.find((j) => j.id === id);
 
   if (!job) {
     return (
@@ -114,10 +106,9 @@ export default async function JobDetail({ params }: { params: { id: string } }) 
         <div className="mt-6 bg-gradient-to-br from-white/80 to-blue-50/80 backdrop-blur-sm p-6 rounded-lg shadow border border-blue-100/50">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Job Description</h2>
           <div
-  className="prose prose-blue max-w-none text-gray-600"
-  dangerouslySetInnerHTML={{ __html: formatJobDescription(job.description) }}
-/>
-
+            className="prose prose-blue max-w-none text-gray-600"
+            dangerouslySetInnerHTML={{ __html: formatJobDescription(job.description) }}
+          />
         </div>
 
         {/* Apply Button */}
