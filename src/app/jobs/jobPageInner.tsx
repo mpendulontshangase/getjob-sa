@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import {
   MagnifyingGlassIcon,
-
   FaceFrownIcon,
 } from "@heroicons/react/16/solid";
 import type { Job } from "@/types";
@@ -24,7 +23,10 @@ export default function JobsPageInner() {
   const [salaryRange, setSalaryRange] = useState("");
   const [province, setProvince] = useState("");
 
+
   const currentPage = Number(searchParams.get("page") || 1);
+
+
 
   useEffect(() => {
     async function loadJobs() {
@@ -42,6 +44,23 @@ export default function JobsPageInner() {
 
     loadJobs();
   }, [currentPage, title, location, contract_type, salaryRange, province]);
+
+  // Show full-page loader while loading
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-lg text-gray-600">Loading jobs...</p>
+            <p className="text-sm text-gray-500 mt-2">Please wait while we fetch the latest opportunities</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -148,7 +167,7 @@ export default function JobsPageInner() {
         <div className="md:flex md:gap-6">
           <div className="flex-1">
             <div className="space-y-3">
-              {!loading && jobs.length === 0 && (
+              {jobs.length === 0 && (
                 <div className="text-center text-gray-600 py-12">
                   <div className="flex flex-col items-center justify-center gap-3">
                     <FaceFrownIcon className="h-12 w-12 text-gray-400" />
@@ -160,8 +179,7 @@ export default function JobsPageInner() {
                 </div>
               )}
 
-              {!loading &&
-                jobs.length > 0 &&
+              {jobs.length > 0 &&
                 jobs.map((job, index: number) => (
                   <div
                     key={index}
