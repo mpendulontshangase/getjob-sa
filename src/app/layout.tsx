@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   other: {
     "google-adsense-account": "ca-pub-8252140217295714",
   },
+  verification: {
+    google: "ca-pub-8252140217295714",
+  },
 };
 
 export default function RootLayout({
@@ -19,6 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-8252140217295714" />
+      </head>
       <body className={inter.className}>
         <main className="min-h-screen bg-gray-50">
           {children}
