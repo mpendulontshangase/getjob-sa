@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+       <head>
         <meta name="google-adsense-account" content="ca-pub-8252140217295714" />
       </head>
       <body className={inter.className}>
